@@ -6,14 +6,14 @@ import { CTASection } from "@/components/marketing/cta-section";
 export const metadata: Metadata = {
   title: "À propos — ASO, Alarme Sécurité Occitane depuis 1987",
   description:
-    "ASO (Alarme Sécurité Occitane) est une entreprise fondée en 1987 par Jean-Paul Saulière, spécialisée en alarmes, automatismes, portes automatiques et climatisation sur Toulouse et Occitanie (31, 32, 81, 82, 09).",
+    "ASO (Alarme Sécurité Occitane) est une entreprise fondée en 1987, spécialisée en alarmes, automatismes, portes automatiques et climatisation sur Toulouse et Occitanie (31, 32, 81, 82, 09).",
 };
 
 const HISTORIQUE = [
   {
     year: "1987",
     title: "Création de la société",
-    text: "Jean-Paul Saulière fonde Alarme Sécurité Occitane (ASO) avec 3 salariés. L'entreprise fabrique ses propres systèmes d'alarme.",
+    text: "Fondation d'Alarme Sécurité Occitane (ASO) avec 3 salariés. L'entreprise fabrique ses propres systèmes d'alarme.",
   },
   {
     year: "1988",
@@ -75,7 +75,7 @@ export default function AProposPage() {
             ASO — Alarme Sécurité Occitane
           </h1>
           <p className="text-steel-300 text-lg leading-relaxed">
-            Depuis 1987, Jean-Paul Saulière et ses équipes installent, maintiennent et dépannent
+            Depuis 1987, les équipes ASO installent, maintiennent et dépannent
             les équipements techniques du bâtiment sur Toulouse et les départements 31, 32, 81, 82 et 09.
           </p>
         </div>

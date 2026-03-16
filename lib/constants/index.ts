@@ -15,7 +15,6 @@ export const COMPANY = {
   postalCode: "31270",
   siret: "341 702 397 00025",
   founded: 1987,
-  founder: "Jean-Paul Saulière",
   hours: {
     weekdays: "Lun–Jeu 8h–13h / 14h–18h",
     friday: "Ven 8h–13h / 14h–17h",
