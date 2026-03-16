@@ -88,6 +88,8 @@ export default function MaintenanceDepannagePage() {
       ]}
       depannageHref="/depannage"
       devisHref="/devis?category=MAINTENANCE_REPAIR"
+      heroPhoto="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1600&q=85&auto=format&fit=crop" heroPhotoAlt="Technicien maintenance tableau électrique"
     />
   );
 }
+

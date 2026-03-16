@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { LucideIcon, ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CTASection } from "./cta-section";
@@ -20,6 +21,8 @@ interface ServicePageProps {
   faqs: FAQ[];
   depannageHref: string;
   devisHref: string;
+  heroPhoto?: string;
+  heroPhotoAlt?: string;
 }
 
 export function ServicePageTemplate({
@@ -33,12 +36,28 @@ export function ServicePageTemplate({
   faqs,
   depannageHref,
   devisHref,
+  heroPhoto,
+  heroPhotoAlt,
 }: ServicePageProps) {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-steel-950 text-white py-20 md:py-28">
-        <div className="container-page">
+      <section className="relative bg-steel-950 text-white py-20 md:py-28 overflow-hidden">
+        {heroPhoto && (
+          <div className="absolute inset-0">
+            <Image
+              src={heroPhoto}
+              alt={heroPhotoAlt ?? category}
+              fill
+              priority
+              quality={85}
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-steel-950/95 via-steel-950/75 to-steel-950/40" />
+          </div>
+        )}
+        <div className="container-page relative">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center">
               <Icon className="w-5 h-5 text-white" />

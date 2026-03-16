@@ -88,6 +88,8 @@ export default function AutomatismesPage() {
       ]}
       depannageHref="/depannage?category=AUTOMATION"
       devisHref="/devis?category=AUTOMATION"
+      heroPhoto="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=85&auto=format&fit=crop" heroPhotoAlt="Portail motorisé industriel"
     />
   );
 }
+

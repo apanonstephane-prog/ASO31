@@ -83,6 +83,8 @@ export default function PortesAutomatiquesPage() {
       ]}
       depannageHref="/depannage?category=AUTOMATIC_DOORS"
       devisHref="/devis?category=AUTOMATIC_DOORS"
+      heroPhoto="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=85&auto=format&fit=crop" heroPhotoAlt="Porte automatique entrée commerciale"
     />
   );
 }
+

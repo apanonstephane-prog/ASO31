@@ -88,6 +88,8 @@ export default function AlarmesSecuritePage() {
       ]}
       depannageHref="/depannage?category=ALARM_SECURITY"
       devisHref="/devis?category=ALARM_SECURITY"
+      heroPhoto="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&q=85&auto=format&fit=crop" heroPhotoAlt="Caméra de vidéosurveillance professionnelle"
     />
   );
 }
+
