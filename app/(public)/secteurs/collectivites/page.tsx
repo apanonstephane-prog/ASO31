@@ -113,8 +113,8 @@ export default function CollectivitesPage() {
       ctaPrimaryLabel="Demander un devis"
       ctaSecondaryLabel="Nous contacter"
       devisHref="/devis"
-      heroPhoto="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=85&auto=format&fit=crop"
-      heroPhotoAlt="Bâtiment administratif public — mairie ou équipement collectif"
+      heroPhoto="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/La_place_du_Capitole_au_soleil_du_matin_-_panoramio.jpg/1280px-La_place_du_Capitole_au_soleil_du_matin_-_panoramio.jpg"
+      heroPhotoAlt="Place du Capitole à Toulouse au soleil du matin — collectivités"
     />
   );
 }
