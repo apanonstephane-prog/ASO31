@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, Clock, ArrowRight } from "lucide-react";
 import { COMPANY, PAGES, SERVICE_CATEGORIES } from "@/lib/constants";
+import { Logo } from "@/components/ui/logo";
 
 export function PublicFooter() {
   return (
@@ -10,13 +11,8 @@ export function PublicFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand column */}
           <div className="lg:col-span-1">
-            <Link href={PAGES.public.home} className="flex items-center gap-2.5 mb-4 group">
-              <div className="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
-                <span className="text-white text-xs font-bold">A31</span>
-              </div>
-              <span className="font-bold text-white text-lg tracking-tight">
-                ASO<span className="text-brand-400">31</span>
-              </span>
+            <Link href={PAGES.public.home} className="inline-flex mb-4">
+              <Logo variant="full" theme="dark" className="h-10 w-auto" />
             </Link>
             <p className="text-sm text-steel-400 leading-relaxed mb-6">
               Automatisme, sécurité, portes automatiques, climatisation et maintenance technique

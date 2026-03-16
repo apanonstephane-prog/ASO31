@@ -12,6 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import { COMPANY, PAGES } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/ui/logo";
 
 const NAV_SERVICES = [
   { label: "Alarme & Sécurité", href: PAGES.public.alarmeSecurity, icon: Shield },
@@ -59,15 +60,10 @@ export function PublicHeader() {
           {/* Logo */}
           <Link
             href={PAGES.public.home}
-            className="flex items-center gap-2.5 shrink-0 group"
+            className="flex items-center shrink-0"
             aria-label="ASO31 — Accueil"
           >
-            <div className="w-8 h-8 bg-brand-700 rounded-lg flex items-center justify-center group-hover:bg-brand-800 transition-colors">
-              <span className="text-white text-xs font-bold tracking-tight">A31</span>
-            </div>
-            <span className="font-bold text-steel-900 text-lg tracking-tight hidden sm:block">
-              ASO<span className="text-brand-600">31</span>
-            </span>
+            <Logo variant="full" theme="light" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop nav */}

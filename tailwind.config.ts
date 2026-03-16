@@ -12,17 +12,17 @@ const config: Config = {
       colors: {
         // ASO31 Premium Industrial Design System
         brand: {
-          50: "#f0f4f8",
-          100: "#d9e4ed",
-          200: "#b3c9db",
-          300: "#7da4bf",
-          400: "#4d7fa0",
-          500: "#2d6285",
-          600: "#1f4d6e",
-          700: "#163a55",
-          800: "#0f2840",
-          900: "#081928",
-          950: "#040e17",
+          50: "#fff0f0",
+          100: "#ffd6d6",
+          200: "#ffb0b0",
+          300: "#ff7a7a",
+          400: "#ff4444",
+          500: "#e81212",
+          600: "#cc0000",
+          700: "#a80000",
+          800: "#880000",
+          900: "#6e0000",
+          950: "#3d0000",
         },
         steel: {
           50: "#f6f7f9",
@@ -117,8 +117,8 @@ const config: Config = {
         modal:
           "0 20px 60px -12px rgb(0 0 0 / 0.20), 0 8px 24px -8px rgb(0 0 0 / 0.12)",
         "inner-sm": "inset 0 1px 3px 0 rgb(0 0 0 / 0.06)",
-        brand: "0 4px 20px -4px rgb(45 98 133 / 0.35)",
-        "brand-lg": "0 8px 32px -8px rgb(45 98 133 / 0.40)",
+        brand: "0 4px 20px -4px rgb(204 0 0 / 0.35)",
+        "brand-lg": "0 8px 32px -8px rgb(204 0 0 / 0.40)",
       },
       animation: {
         "fade-in": "fadeIn 0.3s ease-out",

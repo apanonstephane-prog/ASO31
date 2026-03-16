@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { Logo } from "@/components/ui/logo";
 
 const NAV_ITEMS = [
   {
@@ -68,15 +69,11 @@ export function DashboardSidebar() {
     >
       {/* Logo */}
       <div className="flex items-center h-14 px-4 border-b border-border">
-        <Link href="/app" className="flex items-center gap-2.5 min-w-0">
-          <div className="w-7 h-7 bg-brand-700 rounded-lg flex items-center justify-center shrink-0">
-            <span className="text-white text-xs font-bold">A31</span>
-          </div>
-          {!collapsed && (
-            <span className="font-bold text-steel-900 text-base tracking-tight truncate">
-              ASO<span className="text-brand-600">31</span>
-            </span>
-          )}
+        <Link href="/app" className="flex items-center min-w-0">
+          {collapsed
+            ? <Logo variant="mark" theme="light" className="w-8 h-8" />
+            : <Logo variant="full" theme="light" className="h-8 w-auto" />
+          }
         </Link>
         <button
           onClick={() => setCollapsed(!collapsed)}

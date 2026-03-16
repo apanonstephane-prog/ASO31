@@ -33,7 +33,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid #2d6285;
+    outline: 2px solid #cc0000;
     outline-offset: 2px;
   }
 
@@ -42,8 +42,8 @@
   }
 
   ::selection {
-    background-color: #d9e4ed;
-    color: #0f2840;
+    background-color: #ffd6d6;
+    color: #6e0000;
   }
 }
 
@@ -93,7 +93,7 @@
 
   .gradient-text {
     @apply bg-clip-text;
-    background-image: linear-gradient(to right, #1f4d6e, #4d7fa0);
+    background-image: linear-gradient(to right, #cc0000, #ff4444);
     -webkit-text-fill-color: transparent;
   }
 
