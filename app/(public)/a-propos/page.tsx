@@ -40,6 +40,11 @@ const HISTORIQUE = [
     title: "Département Génie Climatique",
     text: "Création du département Génie Climatique Industriel. ASO compte désormais 35 salariés et un parc de 35 véhicules.",
   },
+  {
+    year: "2025",
+    title: "Nouveaux locaux à Cugnaux",
+    text: "ASO déménage dans de nouveaux locaux au 7 rue Alfred Sauvy, 31270 Cugnaux, pour accompagner la croissance de l'activité et améliorer les conditions d'accueil des équipes et des clients.",
+  },
 ];
 
 const VALEURS = [
