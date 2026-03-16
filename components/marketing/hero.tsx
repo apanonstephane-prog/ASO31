@@ -37,10 +37,10 @@ const QUICK_ACTIONS = [
 ];
 
 const TRUST_ITEMS = [
-  "Interventions sur Toulouse et agglomération",
+  "Toulouse et Occitanie — 31, 32, 81, 82, 09",
   "Toutes marques, tous équipements",
   "Contrats d'entretien sur mesure",
-  "Qualification des demandes en moins d'1 heure",
+  "Fondée en 1987 · 35+ techniciens terrain",
 ];
 
 export function Hero() {
@@ -73,7 +73,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-300 text-sm font-medium mb-6"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
-              Interventions sur Toulouse et Haute-Garonne
+              Toulouse · Occitanie — 31, 32, 81, 82, 09
             </motion.div>
 
             {/* Heading */}

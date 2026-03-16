@@ -2,24 +2,29 @@
 
 export const COMPANY = {
   name: "ASO31",
-  fullName: "ASO31 — Automatisme & Sécurité Occitanie",
+  fullName: "ASO — Alarme Sécurité Occitane",
   tagline: "Expertise technique, réactivité terrain, pilotage intelligent.",
   phone: "05 61 07 66 07",
-  phoneUrgency: "05 61 07 66 07",
-  email: "contact@aso31.fr",
-  emailSAV: "sav@aso31.fr",
+  phoneSAV: "05 62 13 20 30",
+  phoneUrgency: "05 62 13 20 30",
+  email: "info@aso31.fr",
+  emailSAV: "info@aso31.fr",
   address: "7 rue Alfred Sauvy, 31270 Cugnaux",
   city: "Cugnaux",
   region: "Occitanie",
   postalCode: "31270",
-  siret: "XXX XXX XXX 00001",
+  siret: "341 702 397 00025",
+  founded: 1987,
+  founder: "Jean-Paul Saulière",
   hours: {
-    weekdays: "8h – 18h",
-    saturday: "9h – 12h",
-    emergency: "24h/24 pour urgences contractuelles",
+    weekdays: "Lun–Jeu 8h–13h / 14h–18h",
+    friday: "Ven 8h–13h / 14h–17h",
+    saturday: "Fermé",
+    emergency: "Dépannage SAV : 05 62 13 20 30",
   },
+  zones: ["31", "32", "81", "82", "09"],
   social: {
-    linkedin: "https://linkedin.com/company/aso31",
+    linkedin: "https://fr.linkedin.com/company/alarme-securite-occitane",
   },
 } as const;
 

@@ -22,9 +22,9 @@ const STRENGTHS = [
   },
   {
     icon: MapPin,
-    title: "Présence locale en Haute-Garonne",
+    title: "Présence régionale — 5 départements",
     description:
-      "Nos équipes interviennent sur Toulouse et l'ensemble de l'agglomération. La connaissance du terrain réduit les temps de déplacement et améliore la réactivité.",
+      "Nos équipes interviennent sur Toulouse et les départements 31, 32, 81, 82 et 09. 35 véhicules de fonction pour réduire les délais et garantir la réactivité terrain.",
   },
   {
     icon: Clock,
@@ -34,9 +34,9 @@ const STRENGTHS = [
   },
   {
     icon: Shield,
-    title: "Toutes marques, tous équipements",
+    title: "Certifications & agréments reconnus",
     description:
-      "Portails Somfy, Nice, Came, FAAC — alarmes Ajax, Texecom, DSC — climatiseurs Daikin, Mitsubishi, Atlantic. Pas de barrière de marque pour intervenir ou entretenir.",
+      "Qualibat 3511, 5422, 5361 — Installateur Expert Confort Daikin — Membre Premium CAME — Partenaire Bleu Ciel EDF — Marquage CE portails validé C.S.T.B. — Autorisation préfectorale fluides frigorigènes.",
   },
 ];
 
@@ -54,8 +54,8 @@ export function WhyUs() {
               Ce qui change réellement
             </h2>
             <p className="text-lg text-steel-500 max-w-xl mb-10">
-              Pas de promesses vides. Voici concrètement ce que vous pouvez attendre d'une entreprise
-              organisée pour être utile — pas seulement joignable.
+              Fondée en 1987, ASO intervient sur Toulouse et les départements 31, 32, 81, 82 et 09.
+              Pas de promesses vides — des techniciens spécialisés, un suivi clair, des engagements tenus.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -87,15 +87,15 @@ export function WhyUs() {
               {/* Caption overlay */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-steel-950/90 to-transparent p-5">
                 <p className="text-white font-semibold text-sm">Intervention terrain</p>
-                <p className="text-steel-300 text-xs mt-0.5">Toulouse & Haute-Garonne</p>
+                <p className="text-steel-300 text-xs mt-0.5">Toulouse · 31, 32, 81, 82, 09</p>
               </div>
             </div>
             {/* Stats sous la photo */}
             <div className="grid grid-cols-3 gap-3 mt-3">
               {[
-                { value: "8 ans", label: "d'expertise" },
-                { value: "500+", label: "clients actifs" },
-                { value: "98%", label: "satisfaction" },
+                { value: "1987", label: "fondée en" },
+                { value: "35+", label: "véhicules" },
+                { value: "5 dép.", label: "couverts" },
               ].map((s) => (
                 <div key={s.label} className="bg-white border border-border rounded-xl p-3 text-center">
                   <p className="font-bold text-steel-900 text-lg leading-tight">{s.value}</p>
