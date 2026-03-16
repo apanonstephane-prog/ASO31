@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/marketing/hero";
 import { ServicesGrid } from "@/components/marketing/services-grid";
 import { WhyUs } from "@/components/marketing/why-us";
+import { ClientPortalPreview } from "@/components/marketing/client-portal-preview";
 import { ProcessSection } from "@/components/marketing/process-section";
 import { AITeaser } from "@/components/marketing/ai-teaser";
 import { Testimonials } from "@/components/marketing/testimonials";
@@ -19,6 +20,7 @@ export default function HomePage() {
       <Hero />
       <ServicesGrid />
       <WhyUs />
+      <ClientPortalPreview />
       <ProcessSection />
       <AITeaser />
       <Testimonials />
