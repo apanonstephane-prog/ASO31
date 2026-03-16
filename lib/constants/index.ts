@@ -2,7 +2,7 @@
 
 export const COMPANY = {
   name: "ASO31",
-  fullName: "ASO — Alarme Sécurité Occitane",
+  fullName: "ASO — Alarme Sécurité Occitanie",
   tagline: "Expertise technique, réactivité terrain, pilotage intelligent.",
   phone: "05 61 07 66 07",
   phoneSAV: "05 62 13 20 30",
