@@ -87,7 +87,7 @@ export default function ClimatisationPage() {
       ]}
       depannageHref="/depannage?category=CLIMATISATION"
       devisHref="/devis?category=CLIMATISATION"
-      heroPhoto="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1600&q=85&auto=format&fit=crop" heroPhotoAlt="Technicien climatisation HVAC"
+      heroPhoto="https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=1600&q=85&auto=format&fit=crop" heroPhotoAlt="Unités extérieures de climatisation"
     />
   );
 }
