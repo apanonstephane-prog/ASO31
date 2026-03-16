@@ -353,9 +353,9 @@ INSERT INTO "users" ("id","email","name","password","role","phone","createdAt","
 
 -- Technician profiles
 INSERT INTO "technician_profiles" ("id","userId","specialties","zones","vehiclePlate","createdAt","updatedAt") VALUES
-  ('tp_marc',   'usr_marc',   ARRAY['AUTOMATION']::\"ServiceCategory\"[],      ARRAY['Portet-sur-Garonne','Muret','Toulouse Sud'],    'AA-123-BB', NOW(), NOW()),
-  ('tp_sophie', 'usr_sophie', ARRAY['AUTOMATIC_DOORS']::\"ServiceCategory\"[], ARRAY['Toulouse Centre','Toulouse Nord'],               'CC-456-DD', NOW(), NOW()),
-  ('tp_pierre', 'usr_pierre', ARRAY['CLIMATISATION']::\"ServiceCategory\"[],   ARRAY['Toulouse','Blagnac','Colomiers'],                'EE-789-FF', NOW(), NOW());
+  ('tp_marc',   'usr_marc',   ARRAY['AUTOMATION']::"ServiceCategory"[],      ARRAY['Portet-sur-Garonne','Muret','Toulouse Sud'],    'AA-123-BB', NOW(), NOW()),
+  ('tp_sophie', 'usr_sophie', ARRAY['AUTOMATIC_DOORS']::"ServiceCategory"[], ARRAY['Toulouse Centre','Toulouse Nord'],               'CC-456-DD', NOW(), NOW()),
+  ('tp_pierre', 'usr_pierre', ARRAY['CLIMATISATION']::"ServiceCategory"[],   ARRAY['Toulouse','Blagnac','Colomiers'],                'EE-789-FF', NOW(), NOW());
 
 -- Client profile
 INSERT INTO "client_profiles" ("id","userId","clientType","companyName","address","city","postalCode","createdAt","updatedAt") VALUES
@@ -379,14 +379,14 @@ INSERT INTO "equipments" ("id","siteId","typeId","name","brand","model","install
 
 -- Parts
 INSERT INTO "parts" ("id","name","category","compatibleCategories","criticality","estimatedDeliveryDays","stockIndicator","createdAt") VALUES
-  ('p1', 'Cellule photoélectrique',         'Capteur',       ARRAY['AUTOMATION','AUTOMATIC_DOORS']::\"ServiceCategory\"[], 'HIGH',   2, 'EN_STOCK', NOW()),
-  ('p2', 'Fin de course magnétique',        'Mécanique',     ARRAY['AUTOMATION']::\"ServiceCategory\"[],                   'NORMAL', 3, 'EN_STOCK', NOW()),
-  ('p3', 'Carte de commande FAAC 844',      'Électronique',  ARRAY['AUTOMATION']::\"ServiceCategory\"[],                   'HIGH',   5, 'FAIBLE',   NOW()),
-  ('p4', 'Galet de guidage portail',        'Mécanique',     ARRAY['AUTOMATION']::\"ServiceCategory\"[],                   'NORMAL', 3, 'EN_STOCK', NOW()),
-  ('p5', 'Batterie de secours 12V 7Ah',     'Alimentation',  ARRAY['ALARM_SECURITY']::\"ServiceCategory\"[],               'NORMAL', 1, 'EN_STOCK', NOW()),
-  ('p6', 'Fluide frigorigène R32',          'Frigoriste',    ARRAY['CLIMATISATION']::\"ServiceCategory\"[],                 'HIGH',   1, 'EN_STOCK', NOW()),
-  ('p7', 'Radar présence porte automatique','Détection',     ARRAY['AUTOMATIC_DOORS']::\"ServiceCategory\"[],              'HIGH',   4, 'EN_STOCK', NOW()),
-  ('p8', 'Amortisseur bras barrière',       'Mécanique',     ARRAY['AUTOMATION']::\"ServiceCategory\"[],                   'NORMAL', 7, 'FAIBLE',   NOW());
+  ('p1', 'Cellule photoélectrique',         'Capteur',       ARRAY['AUTOMATION','AUTOMATIC_DOORS']::"ServiceCategory"[], 'HIGH',   2, 'EN_STOCK', NOW()),
+  ('p2', 'Fin de course magnétique',        'Mécanique',     ARRAY['AUTOMATION']::"ServiceCategory"[],                   'NORMAL', 3, 'EN_STOCK', NOW()),
+  ('p3', 'Carte de commande FAAC 844',      'Électronique',  ARRAY['AUTOMATION']::"ServiceCategory"[],                   'HIGH',   5, 'FAIBLE',   NOW()),
+  ('p4', 'Galet de guidage portail',        'Mécanique',     ARRAY['AUTOMATION']::"ServiceCategory"[],                   'NORMAL', 3, 'EN_STOCK', NOW()),
+  ('p5', 'Batterie de secours 12V 7Ah',     'Alimentation',  ARRAY['ALARM_SECURITY']::"ServiceCategory"[],               'NORMAL', 1, 'EN_STOCK', NOW()),
+  ('p6', 'Fluide frigorigène R32',          'Frigoriste',    ARRAY['CLIMATISATION']::"ServiceCategory"[],                 'HIGH',   1, 'EN_STOCK', NOW()),
+  ('p7', 'Radar présence porte automatique','Détection',     ARRAY['AUTOMATIC_DOORS']::"ServiceCategory"[],              'HIGH',   4, 'EN_STOCK', NOW()),
+  ('p8', 'Amortisseur bras barrière',       'Mécanique',     ARRAY['AUTOMATION']::"ServiceCategory"[],                   'NORMAL', 7, 'FAIBLE',   NOW());
 
 -- Knowledge articles
 INSERT INTO "knowledge_articles" ("id","title","slug","category","summary","symptoms","probableCauses","initialChecks","safetyRisks","escalationNotes","content","tags","isPublic","createdAt","updatedAt") VALUES
