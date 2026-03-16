@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function EntreprisesPage() {
   return (
     <SectorPageTemplate
-      icon={Building2}
+      icon={<Building2 className="w-5 h-5 text-white" />}
       category="Entreprises & Commerces"
       headline="La sécurité de votre site, sans compromis"
       subheadline="Contrôle d'accès, alarme intrusion, portails industriels, rideaux métalliques, climatisation tertiaire — ASO accompagne les entreprises depuis 1987."
@@ -21,31 +21,31 @@ export default function EntreprisesPage() {
           label: "Alarme & Contrôle d'accès",
           description: "Système d'alarme intrusion, badges, lecteurs biométriques, vidéosurveillance et gestion des droits d'accès par zone.",
           href: "/services/alarmes-securite",
-          icon: ShieldCheck,
+          icon: <ShieldCheck className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Portails & Barrières Levantes",
           description: "Portails coulissants motorisés, barrières de parking, bornes escamotables pour sécuriser vos accès véhicules.",
           href: "/services/automatismes",
-          icon: Settings2,
+          icon: <Settings2 className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Portes Automatiques & Rideaux",
           description: "Portes automatiques coulissantes, rideaux métalliques, portes sectionnelles industrielles et issues de secours motorisées.",
           href: "/services/portes-automatiques",
-          icon: DoorOpen,
+          icon: <DoorOpen className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Climatisation Tertiaire",
           description: "Systèmes de climatisation pour bureaux, salles informatiques, commerces et espaces de production.",
           href: "/services/climatisation",
-          icon: Wind,
+          icon: <Wind className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Contrat de Maintenance",
           description: "Contrats pluriannuels adaptés à vos obligations réglementaires, avec rapports d'intervention et traçabilité complète.",
           href: "/services/maintenance-depannage",
-          icon: Wrench,
+          icon: <Wrench className="w-4 h-4 text-brand-600" />,
         },
       ]}
       challenges={[

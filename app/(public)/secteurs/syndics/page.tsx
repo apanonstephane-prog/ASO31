@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function SyndicsPage() {
   return (
     <SectorPageTemplate
-      icon={Building}
+      icon={<Building className="w-5 h-5 text-white" />}
       category="Syndics & Copropriétés"
       headline="La gestion des accès collectifs, simplifiée"
       subheadline="Portails de résidence, interphonie, portes de parking, barrières et contrôle d'accès — ASO accompagne les syndics et gestionnaires de copropriété depuis 1987."
@@ -21,25 +21,25 @@ export default function SyndicsPage() {
           label: "Portails & Automatismes de Résidence",
           description: "Portails coulissants motorisés, télécommandes, badges résidents, gestion des codes d'accès visiteurs.",
           href: "/services/automatismes",
-          icon: Settings2,
+          icon: <Settings2 className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Portes de Parking & Barrières",
           description: "Portes sectionnelles de sous-sol, barrières levantes de parking, contrôle d'accès véhicules par badge ou télécommande.",
           href: "/services/portes-automatiques",
-          icon: DoorOpen,
+          icon: <DoorOpen className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Interphonie & Contrôle d'Accès",
           description: "Parlophonie, visiophonie, gestion des accès piétons, ouverture à distance depuis smartphone.",
           href: "/services/alarmes-securite",
-          icon: ShieldCheck,
+          icon: <ShieldCheck className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Contrat d'Entretien Collectif",
           description: "Maintenance préventive et corrective sur l'ensemble des équipements de la résidence, avec rapport annuel pour l'AG.",
           href: "/services/maintenance-depannage",
-          icon: Wrench,
+          icon: <Wrench className="w-4 h-4 text-brand-600" />,
         },
       ]}
       challenges={[

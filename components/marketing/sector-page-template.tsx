@@ -1,10 +1,10 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
-  LucideIcon,
   ArrowRight,
   CheckCircle2,
   Phone,
@@ -36,7 +36,7 @@ interface ServiceLink {
   label: string;
   description: string;
   href: string;
-  icon: LucideIcon;
+  icon: React.ReactNode;
 }
 
 interface Challenge {
@@ -50,7 +50,7 @@ interface FAQ {
 }
 
 interface SectorPageProps {
-  icon: LucideIcon;
+  icon: React.ReactNode;
   category: string;
   headline: string;
   subheadline: string;
@@ -72,7 +72,7 @@ interface SectorPageProps {
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export function SectorPageTemplate({
-  icon: Icon,
+  icon,
   category,
   headline,
   subheadline,
@@ -135,7 +135,7 @@ export function SectorPageTemplate({
             transition={{ duration: 0.45, delay: 0.15 }}
           >
             <div className="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center">
-              <Icon className="w-5 h-5 text-white" />
+              {icon}
             </div>
             <span className="text-steel-400 text-sm font-medium uppercase tracking-wide">
               Secteur — {category}
@@ -274,16 +274,14 @@ export function SectorPageTemplate({
             viewport={{ once: true, margin: "-60px" }}
             variants={stagger}
           >
-            {services.map((service) => {
-              const ServiceIcon = service.icon;
-              return (
+            {services.map((service) => (
                 <motion.div key={service.href} variants={fadeUp}>
                   <Link
                     href={service.href}
                     className="group bg-white border border-border rounded-xl p-5 hover:border-brand-400 hover:shadow-sm transition-all flex flex-col h-full"
                   >
                     <div className="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center mb-3 group-hover:bg-brand-100 transition-colors">
-                      <ServiceIcon className="w-4 h-4 text-brand-600" />
+                      {service.icon}
                     </div>
                     <h3 className="font-semibold text-steel-900 mb-1.5 text-sm group-hover:text-brand-700 transition-colors">
                       {service.label}
@@ -296,8 +294,7 @@ export function SectorPageTemplate({
                     </span>
                   </Link>
                 </motion.div>
-              );
-            })}
+              ))}
           </motion.div>
         </div>
       </section>

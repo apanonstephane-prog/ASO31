@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function CollectivitesPage() {
   return (
     <SectorPageTemplate
-      icon={Landmark}
+      icon={<Landmark className="w-5 h-5 text-white" />}
       category="Collectivités"
       headline="Des installations conformes pour vos établissements publics"
       subheadline="Écoles, mairies, centres culturels, hôpitaux — ASO installe et maintient vos équipements en conformité avec les normes ERP et les exigences de la commande publique."
@@ -21,25 +21,25 @@ export default function CollectivitesPage() {
           label: "Alarme & Sécurité ERP",
           description: "Systèmes d'alarme intrusion et incendie, contrôle d'accès et vidéosurveillance conformes aux normes ERP de catégorie 1 à 5.",
           href: "/services/alarmes-securite",
-          icon: ShieldCheck,
+          icon: <ShieldCheck className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Automatismes & Portails",
           description: "Portails d'entrée motorisés, barrières de parking, bollards escamotables pour sécuriser les accès aux établissements.",
           href: "/services/automatismes",
-          icon: Settings2,
+          icon: <Settings2 className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Portes Automatiques PMR",
           description: "Portes automatiques coulissantes et battantes conformes à la réglementation accessibilité PMR (loi du 11 février 2005).",
           href: "/services/portes-automatiques",
-          icon: DoorOpen,
+          icon: <DoorOpen className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Maintenance Réglementaire",
           description: "Contrats de maintenance avec rapports de visite, registre de sécurité et attestations de conformité pour vos contrôles périodiques.",
           href: "/services/maintenance-depannage",
-          icon: Wrench,
+          icon: <Wrench className="w-4 h-4 text-brand-600" />,
         },
       ]}
       challenges={[

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ParticuliersPage() {
   return (
     <SectorPageTemplate
-      icon={Home}
+      icon={<Home className="w-5 h-5 text-white" />}
       category="Particuliers"
       headline="Votre maison, sécurisée et confortable"
       subheadline="Alarme, portail motorisé, porte de garage, climatisation — ASO installe, entretient et dépanne tous vos équipements depuis 1987."
@@ -21,31 +21,31 @@ export default function ParticuliersPage() {
           label: "Alarme & Vidéosurveillance",
           description: "Système d'alarme intrusion, détecteurs, sirènes et caméras pour sécuriser votre domicile 24h/24.",
           href: "/services/alarmes-securite",
-          icon: ShieldCheck,
+          icon: <ShieldCheck className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Portail & Automatismes",
           description: "Motorisation de portail battant ou coulissant, télécommande, badge et interphone.",
           href: "/services/automatismes",
-          icon: Settings2,
+          icon: <Settings2 className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Porte de Garage Automatique",
           description: "Installation et dépannage de portes sectionnelles, basculantes ou à enroulement.",
           href: "/services/portes-automatiques",
-          icon: DoorOpen,
+          icon: <DoorOpen className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Climatisation Réversible",
           description: "Climatiseur split, multi-split ou gainable pour chauffer et rafraîchir votre logement.",
           href: "/services/climatisation",
-          icon: Wind,
+          icon: <Wind className="w-4 h-4 text-brand-600" />,
         },
         {
           label: "Contrat d'Entretien",
           description: "Maintenance annuelle de vos équipements avec priorité d'intervention en cas de panne.",
           href: "/services/maintenance-depannage",
-          icon: Wrench,
+          icon: <Wrench className="w-4 h-4 text-brand-600" />,
         },
       ]}
       challenges={[
