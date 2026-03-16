@@ -1,0 +1,584 @@
+// ASO31 Platform — Prisma Schema
+// Architecture: domain-driven, typed enums, clean relations
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────
+
+enum UserRole {
+  VISITOR
+  CLIENT
+  TECHNICIAN
+  OPERATOR
+  MANAGER
+  ADMIN
+}
+
+enum TicketStatus {
+  NEW
+  TO_QUALIFY
+  PLANNED
+  ASSIGNED
+  IN_PROGRESS
+  WAITING_PART
+  WAITING_CLIENT
+  RESOLVED
+  CLOSED
+}
+
+enum Priority {
+  LOW
+  NORMAL
+  HIGH
+  CRITICAL
+}
+
+enum Urgency {
+  NON_BLOCKING
+  INCONVENIENT
+  BLOCKING
+  CRITICAL_SAFETY
+}
+
+enum InterventionStatus {
+  PLANNED
+  EN_ROUTE
+  ON_SITE
+  SUSPENDED
+  COMPLETED
+  TO_RESCHEDULE
+}
+
+enum ServiceCategory {
+  ALARM_SECURITY
+  AUTOMATION
+  AUTOMATIC_DOORS
+  CLIMATISATION
+  MAINTENANCE_REPAIR
+}
+
+enum EquipmentStatus {
+  OPERATIONAL
+  DEGRADED
+  FAULTY
+  DECOMMISSIONED
+  UNDER_MAINTENANCE
+}
+
+enum ContractStatus {
+  ACTIVE
+  EXPIRED
+  PENDING_RENEWAL
+  SUSPENDED
+  CANCELLED
+}
+
+enum ClientType {
+  INDIVIDUAL
+  BUSINESS
+  SYNDIC
+  COLLECTIVITY
+  INDUSTRY
+}
+
+enum AIConfidenceLevel {
+  LOW
+  MEDIUM
+  HIGH
+  VERY_HIGH
+}
+
+enum RequestSource {
+  PHONE
+  PORTAL
+  AI_ASSISTANT
+  EMAIL
+  FIELD
+}
+
+// ─────────────────────────────────────────────
+// AUTH / USERS
+// ─────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String?
+  role          UserRole  @default(VISITOR)
+  avatar        String?
+  phone         String?
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  clientProfile     ClientProfile?
+  technicianProfile TechnicianProfile?
+  tickets           Ticket[]            @relation("TicketCreator")
+  assignedTickets   Ticket[]            @relation("TicketAssignee")
+  interventions     Intervention[]
+  messages          TicketMessage[]
+  conversations     AIConversation[]
+  notifications     Notification[]
+  quoteRequests     QuoteRequest[]
+  appointmentRequests AppointmentRequest[]
+
+  @@map("users")
+}
+
+// ─────────────────────────────────────────────
+// CLIENTS & SITES
+// ─────────────────────────────────────────────
+
+model ClientProfile {
+  id           String     @id @default(cuid())
+  userId       String     @unique
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clientType   ClientType @default(INDIVIDUAL)
+  companyName  String?
+  siret        String?
+  address      String?
+  city         String?
+  postalCode   String?
+  notes        String?
+  isVip        Boolean    @default(false)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  // Relations
+  sites        ClientSite[]
+  contacts     Contact[]
+  contracts    Contract[]
+  tickets      Ticket[]
+
+  @@map("client_profiles")
+}
+
+model ClientSite {
+  id            String        @id @default(cuid())
+  clientId      String
+  client        ClientProfile @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  name          String
+  address       String
+  city          String
+  postalCode    String
+  siteType      String        // "résidence", "commerce", "entrepôt", etc.
+  accessNotes   String?
+  contactOnSite String?
+  phoneOnSite   String?
+  lat           Float?
+  lng           Float?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  // Relations
+  equipments    Equipment[]
+  tickets       Ticket[]
+  interventions Intervention[]
+  contracts     Contract[]
+
+  @@map("client_sites")
+}
+
+model Contact {
+  id        String        @id @default(cuid())
+  clientId  String
+  client    ClientProfile @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  firstName String
+  lastName  String
+  role      String?
+  email     String?
+  phone     String?
+  mobile    String?
+  isPrimary Boolean       @default(false)
+  createdAt DateTime      @default(now())
+
+  @@map("contacts")
+}
+
+// ─────────────────────────────────────────────
+// EQUIPMENT
+// ─────────────────────────────────────────────
+
+model EquipmentType {
+  id              String          @id @default(cuid())
+  name            String
+  category        ServiceCategory
+  description     String?
+  commonIssues    String[]
+  maintenanceTips String[]
+  createdAt       DateTime        @default(now())
+
+  // Relations
+  equipments      Equipment[]
+  knowledgeArticles KnowledgeArticle[]
+
+  @@map("equipment_types")
+}
+
+model Equipment {
+  id              String          @id @default(cuid())
+  siteId          String
+  site            ClientSite      @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  typeId          String
+  type            EquipmentType   @relation(fields: [typeId], references: [id])
+  name            String
+  brand           String?
+  model           String?
+  serialNumber    String?
+  installDate     DateTime?
+  lastMaintenance DateTime?
+  warrantyUntil   DateTime?
+  status          EquipmentStatus @default(OPERATIONAL)
+  notes           String?
+  photos          String[]
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  tickets         Ticket[]
+  interventions   Intervention[]
+  issues          EquipmentIssue[]
+
+  @@map("equipments")
+}
+
+model EquipmentIssue {
+  id           String    @id @default(cuid())
+  equipmentId  String
+  equipment    Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  title        String
+  description  String
+  resolvedAt   DateTime?
+  createdAt    DateTime  @default(now())
+
+  @@map("equipment_issues")
+}
+
+// ─────────────────────────────────────────────
+// PARTS
+// ─────────────────────────────────────────────
+
+model Part {
+  id                   String          @id @default(cuid())
+  name                 String
+  reference            String?         @unique
+  category             String
+  compatibleCategories ServiceCategory[]
+  description          String?
+  criticality          Priority        @default(NORMAL)
+  estimatedDeliveryDays Int?
+  stockIndicator       String          @default("EN_STOCK") // EN_STOCK, FAIBLE, RUPTURE
+  unitPrice            Float?
+  createdAt            DateTime        @default(now())
+
+  // Relations
+  interventionParts InterventionPart[]
+
+  @@map("parts")
+}
+
+// ─────────────────────────────────────────────
+// CONTRACTS
+// ─────────────────────────────────────────────
+
+model Contract {
+  id           String        @id @default(cuid())
+  clientId     String
+  client       ClientProfile @relation(fields: [clientId], references: [id])
+  siteId       String?
+  site         ClientSite?   @relation(fields: [siteId], references: [id])
+  reference    String        @unique
+  type         String        // "Maintenance annuelle", "Contrat multi-équipements", etc.
+  description  String?
+  startDate    DateTime
+  endDate      DateTime
+  status       ContractStatus @default(ACTIVE)
+  annualValue  Float?
+  visitPerYear Int           @default(1)
+  services     ServiceCategory[]
+  notes        String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@map("contracts")
+}
+
+// ─────────────────────────────────────────────
+// TICKETS
+// ─────────────────────────────────────────────
+
+model Ticket {
+  id              String          @id @default(cuid())
+  reference       String          @unique
+  title           String
+  description     String
+  category        ServiceCategory
+  status          TicketStatus    @default(NEW)
+  priority        Priority        @default(NORMAL)
+  urgency         Urgency         @default(NON_BLOCKING)
+  source          RequestSource   @default(PORTAL)
+
+  clientId        String?
+  client          ClientProfile?  @relation(fields: [clientId], references: [id])
+  siteId          String?
+  site            ClientSite?     @relation(fields: [siteId], references: [id])
+  equipmentId     String?
+  equipment       Equipment?      @relation(fields: [equipmentId], references: [id])
+
+  creatorId       String?
+  creator         User?           @relation("TicketCreator", fields: [creatorId], references: [id])
+  assigneeId      String?
+  assignee        User?           @relation("TicketAssignee", fields: [assigneeId], references: [id])
+
+  symptoms        String[]
+  photos          String[]
+  estimatedTime   Int?            // minutes
+  resolvedAt      DateTime?
+  closedAt        DateTime?
+  scheduledAt     DateTime?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  messages        TicketMessage[]
+  interventions   Intervention[]
+  aiDiagnostics   AIDiagnosticSuggestion[]
+
+  @@map("tickets")
+}
+
+model TicketMessage {
+  id          String   @id @default(cuid())
+  ticketId    String
+  ticket      Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id])
+  authorName  String   // pour messages sans compte
+  content     String
+  isInternal  Boolean  @default(false)
+  attachments String[]
+  createdAt   DateTime @default(now())
+
+  @@map("ticket_messages")
+}
+
+// ─────────────────────────────────────────────
+// INTERVENTIONS
+// ─────────────────────────────────────────────
+
+model TechnicianProfile {
+  id              String          @id @default(cuid())
+  userId          String          @unique
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  employeeId      String?
+  specialties     ServiceCategory[]
+  zones           String[]
+  vehiclePlate    String?
+  notes           String?
+  isAvailable     Boolean         @default(true)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@map("technician_profiles")
+}
+
+model Intervention {
+  id            String             @id @default(cuid())
+  reference     String             @unique
+  ticketId      String?
+  ticket        Ticket?            @relation(fields: [ticketId], references: [id])
+  siteId        String?
+  site          ClientSite?        @relation(fields: [siteId], references: [id])
+  equipmentId   String?
+  equipment     Equipment?         @relation(fields: [equipmentId], references: [id])
+  technicianId  String
+  technician    User               @relation(fields: [technicianId], references: [id])
+  status        InterventionStatus @default(PLANNED)
+  scheduledAt   DateTime
+  startedAt     DateTime?
+  completedAt   DateTime?
+  duration      Int?               // minutes
+  report        String?
+  checklist     Json?
+  partsUsed     InterventionPart[]
+  photos        InterventionPhoto[]
+  clientSignature String?
+  internalNotes String?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  @@map("interventions")
+}
+
+model InterventionPhoto {
+  id             String       @id @default(cuid())
+  interventionId String
+  intervention   Intervention @relation(fields: [interventionId], references: [id], onDelete: Cascade)
+  url            String
+  caption        String?
+  isBefore       Boolean      @default(true)
+  createdAt      DateTime     @default(now())
+
+  @@map("intervention_photos")
+}
+
+model InterventionPart {
+  id             String       @id @default(cuid())
+  interventionId String
+  intervention   Intervention @relation(fields: [interventionId], references: [id], onDelete: Cascade)
+  partId         String
+  part           Part         @relation(fields: [partId], references: [id])
+  quantity       Int          @default(1)
+  unitPrice      Float?
+
+  @@map("intervention_parts")
+}
+
+// ─────────────────────────────────────────────
+// KNOWLEDGE BASE
+// ─────────────────────────────────────────────
+
+model KnowledgeArticle {
+  id               String          @id @default(cuid())
+  title            String
+  slug             String          @unique
+  category         ServiceCategory
+  equipmentTypeId  String?
+  equipmentType    EquipmentType?  @relation(fields: [equipmentTypeId], references: [id])
+  summary          String
+  symptoms         String[]
+  probableCauses   String[]
+  initialChecks    String[]
+  safetyRisks      String[]
+  escalationNotes  String?
+  content          String
+  tags             String[]
+  isPublic         Boolean         @default(false)
+  viewCount        Int             @default(0)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  @@map("knowledge_articles")
+}
+
+// ─────────────────────────────────────────────
+// AI LAYER
+// ─────────────────────────────────────────────
+
+model AIConversation {
+  id          String    @id @default(cuid())
+  userId      String?
+  user        User?     @relation(fields: [userId], references: [id])
+  sessionId   String
+  messages    Json      // array of {role, content, timestamp}
+  context     Json?     // ticket context, equipment detected, etc.
+  ticketId    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  diagnostics AIDiagnosticSuggestion[]
+
+  @@map("ai_conversations")
+}
+
+model AIDiagnosticSuggestion {
+  id                      String            @id @default(cuid())
+  ticketId                String?
+  ticket                  Ticket?           @relation(fields: [ticketId], references: [id])
+  conversationId          String?
+  conversation            AIConversation?   @relation(fields: [conversationId], references: [id])
+  probableEquipmentCategory ServiceCategory?
+  probableIssue           String
+  urgencyLevel            Urgency
+  likelyParts             String[]
+  recommendedTools        String[]
+  safetyRisks             String[]
+  requiresHumanValidation Boolean           @default(true)
+  confidenceScore         Float             // 0-1
+  confidenceLevel         AIConfidenceLevel
+  nextBestAction          String
+  technicianNotes         String?
+  createdAt               DateTime          @default(now())
+
+  @@map("ai_diagnostic_suggestions")
+}
+
+// ─────────────────────────────────────────────
+// REQUESTS (public forms)
+// ─────────────────────────────────────────────
+
+model QuoteRequest {
+  id            String          @id @default(cuid())
+  userId        String?
+  user          User?           @relation(fields: [userId], references: [id])
+  firstName     String
+  lastName      String
+  email         String
+  phone         String
+  clientType    ClientType
+  companyName   String?
+  address       String?
+  city          String?
+  category      ServiceCategory
+  description   String
+  budget        String?
+  desiredDelay  String?
+  attachments   String[]
+  status        String          @default("pending") // pending, processing, quoted, accepted, rejected
+  notes         String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@map("quote_requests")
+}
+
+model AppointmentRequest {
+  id            String          @id @default(cuid())
+  userId        String?
+  user          User?           @relation(fields: [userId], references: [id])
+  firstName     String
+  lastName      String
+  email         String
+  phone         String
+  category      ServiceCategory
+  description   String
+  preferredDate DateTime?
+  preferredSlot String?         // "matin", "après-midi", "toute la journée"
+  address       String
+  city          String
+  isUrgent      Boolean         @default(false)
+  attachments   String[]
+  status        String          @default("pending")
+  createdAt     DateTime        @default(now())
+
+  @@map("appointment_requests")
+}
+
+// ─────────────────────────────────────────────
+// NOTIFICATIONS
+// ─────────────────────────────────────────────
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String   // "ticket_update", "intervention_scheduled", etc.
+  title     String
+  message   String
+  link      String?
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("notifications")
+}

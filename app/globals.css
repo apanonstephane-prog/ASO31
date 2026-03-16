@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: #e5e7eb;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #ffffff;
+    color: #111827;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #9ca3af;
+  }
+
+  :focus-visible {
+    outline: 2px solid #2d6285;
+    outline-offset: 2px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: #d9e4ed;
+    color: #0f2840;
+  }
+}
+
+@layer components {
+  .heading-display {
+    @apply font-bold tracking-tight leading-tight;
+    color: #0f2840;
+  }
+
+  .heading-section {
+    @apply font-semibold tracking-tight;
+    color: #1e242e;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .surface-card {
+    @apply bg-white border rounded-xl;
+    border-color: #e5e7eb;
+    box-shadow: 0 2px 8px -2px rgb(0 0 0 / 0.08), 0 1px 3px -1px rgb(0 0 0 / 0.06);
+  }
+
+  .surface-raised {
+    @apply bg-white border rounded-xl;
+    border-color: #e5e7eb;
+    box-shadow: 0 4px 16px -4px rgb(0 0 0 / 0.10), 0 2px 6px -2px rgb(0 0 0 / 0.06);
+  }
+
+  .container-page {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-narrow {
+    @apply max-w-3xl mx-auto px-4 sm:px-6;
+  }
+
+  .badge-status {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+
+  .form-field-hint {
+    @apply text-xs mt-1;
+    color: #667891;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text;
+    background-image: linear-gradient(to right, #1f4d6e, #4d7fa0);
+    -webkit-text-fill-color: transparent;
+  }
+
+  .section-py {
+    @apply py-16 md:py-24;
+  }
+
+  .section-py-sm {
+    @apply py-10 md:py-16;
+  }
+}
+
+@layer utilities {
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+}
