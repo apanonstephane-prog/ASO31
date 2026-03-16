@@ -113,8 +113,8 @@ export default function CollectivitesPage() {
       ctaPrimaryLabel="Demander un devis"
       ctaSecondaryLabel="Nous contacter"
       devisHref="/devis"
-      heroPhoto="https://images.unsplash.com/photo-1577495508048-b635879837f1?w=1600&q=85&auto=format&fit=crop"
-      heroPhotoAlt="Bâtiment public — mairie, école ou équipement collectif"
+      heroPhoto="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=85&auto=format&fit=crop"
+      heroPhotoAlt="Bâtiment administratif public — mairie ou équipement collectif"
     />
   );
 }
