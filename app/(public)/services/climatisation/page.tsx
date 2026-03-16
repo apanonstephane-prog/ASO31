@@ -87,7 +87,7 @@ export default function ClimatisationPage() {
       ]}
       depannageHref="/depannage?category=CLIMATISATION"
       devisHref="/devis?category=CLIMATISATION"
-      heroPhoto="https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=1600&q=85&auto=format&fit=crop" heroPhotoAlt="Unités extérieures de climatisation"
+      heroPhoto="https://images.pexels.com/photos/27134985/pexels-photo-27134985.jpeg?auto=compress&cs=tinysrgb&w=1600" heroPhotoAlt="Unité de climatisation extérieure sur bâtiment"
     />
   );
 }
