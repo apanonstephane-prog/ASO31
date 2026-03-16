@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   LucideIcon,
   ArrowRight,
@@ -14,6 +17,20 @@ import {
 import { Button } from "@/components/ui/button";
 import { CTASection } from "./cta-section";
 import { COMPANY, PAGES } from "@/lib/constants";
+
+// ─── Animation variants ──────────────────────────────────────────────────────
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+// ─── Types ───────────────────────────────────────────────────────────────────
 
 interface ServiceLink {
   label: string;
@@ -52,6 +69,8 @@ interface SectorPageProps {
   heroPhotoAlt?: string;
 }
 
+// ─── Component ───────────────────────────────────────────────────────────────
+
 export function SectorPageTemplate({
   icon: Icon,
   category,
@@ -73,7 +92,7 @@ export function SectorPageTemplate({
 }: SectorPageProps) {
   return (
     <div>
-      {/* Hero */}
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative bg-steel-950 text-white py-20 md:py-28 overflow-hidden">
         {heroPhoto && (
           <div className="absolute inset-0">
@@ -91,7 +110,12 @@ export function SectorPageTemplate({
         )}
         <div className="container-page relative">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-steel-400 text-sm mb-8">
+          <motion.nav
+            className="flex items-center gap-2 text-steel-400 text-sm mb-8"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.05 }}
+          >
             <Link href="/" className="hover:text-white transition-colors">
               Accueil
             </Link>
@@ -101,23 +125,50 @@ export function SectorPageTemplate({
             </Link>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-steel-300">{category}</span>
-          </nav>
+          </motion.nav>
 
-          <div className="flex items-center gap-3 mb-6">
+          {/* Badge */}
+          <motion.div
+            className="flex items-center gap-3 mb-6"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.15 }}
+          >
             <div className="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center">
               <Icon className="w-5 h-5 text-white" />
             </div>
             <span className="text-steel-400 text-sm font-medium uppercase tracking-wide">
               Secteur — {category}
             </span>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 max-w-3xl leading-tight">
+          </motion.div>
+
+          {/* Headline */}
+          <motion.h1
+            className="text-4xl md:text-5xl font-bold text-white mb-4 max-w-3xl leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+          >
             {headline}
-          </h1>
-          <p className="text-xl text-steel-300 max-w-2xl leading-relaxed mb-8">
+          </motion.h1>
+
+          {/* Sub-headline */}
+          <motion.p
+            className="text-xl text-steel-300 max-w-2xl leading-relaxed mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+          >
             {subheadline}
-          </p>
-          <div className="flex flex-wrap gap-3">
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            className="flex flex-wrap gap-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.45 }}
+          >
             <Button asChild size="lg">
               <Link href={devisHref}>
                 <FileText className="w-4 h-4" />
@@ -144,11 +195,11 @@ export function SectorPageTemplate({
               <Phone className="w-4 h-4" />
               {COMPANY.phone}
             </a>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Quick value strip */}
+      {/* ── Quick value strip ────────────────────────────────────────────── */}
       <section className="py-5 bg-surface-subtle border-b border-border">
         <div className="container-page">
           <div className="flex flex-wrap gap-x-8 gap-y-2 justify-center sm:justify-start">
@@ -177,10 +228,16 @@ export function SectorPageTemplate({
         </div>
       </section>
 
-      {/* Description */}
+      {/* ── Description ─────────────────────────────────────────────────── */}
       <section className="section-py bg-white">
         <div className="container-page">
-          <div className="max-w-3xl">
+          <motion.div
+            className="max-w-3xl"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+          >
             <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">
               Votre profil
             </p>
@@ -188,60 +245,92 @@ export function SectorPageTemplate({
               Des solutions taillées pour vous
             </h2>
             <p className="text-steel-600 leading-relaxed text-base">{description}</p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Services for this sector */}
+      {/* ── Services ────────────────────────────────────────────────────── */}
       <section className="section-py bg-surface-subtle border-y border-border">
         <div className="container-page">
-          <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">
-            Nos prestations
-          </p>
-          <h2 className="text-2xl font-bold text-steel-950 mb-8">
-            Ce que nous faisons pour vous
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="mb-8"
+          >
+            <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">
+              Nos prestations
+            </p>
+            <h2 className="text-2xl font-bold text-steel-950">
+              Ce que nous faisons pour vous
+            </h2>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={stagger}
+          >
             {services.map((service) => {
               const ServiceIcon = service.icon;
               return (
-                <Link
-                  key={service.href}
-                  href={service.href}
-                  className="group bg-white border border-border rounded-xl p-5 hover:border-brand-400 hover:shadow-sm transition-all"
-                >
-                  <div className="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center mb-3 group-hover:bg-brand-100 transition-colors">
-                    <ServiceIcon className="w-4 h-4 text-brand-600" />
-                  </div>
-                  <h3 className="font-semibold text-steel-900 mb-1.5 text-sm group-hover:text-brand-700 transition-colors">
-                    {service.label}
-                  </h3>
-                  <p className="text-xs text-steel-500 leading-relaxed mb-3">
-                    {service.description}
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-xs text-brand-600 font-medium group-hover:gap-2 transition-all">
-                    En savoir plus <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                </Link>
+                <motion.div key={service.href} variants={fadeUp}>
+                  <Link
+                    href={service.href}
+                    className="group bg-white border border-border rounded-xl p-5 hover:border-brand-400 hover:shadow-sm transition-all flex flex-col h-full"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center mb-3 group-hover:bg-brand-100 transition-colors">
+                      <ServiceIcon className="w-4 h-4 text-brand-600" />
+                    </div>
+                    <h3 className="font-semibold text-steel-900 mb-1.5 text-sm group-hover:text-brand-700 transition-colors">
+                      {service.label}
+                    </h3>
+                    <p className="text-xs text-steel-500 leading-relaxed mb-3 flex-1">
+                      {service.description}
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-xs text-brand-600 font-medium group-hover:gap-2 transition-all">
+                      En savoir plus <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </Link>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Challenges */}
+      {/* ── Challenges ──────────────────────────────────────────────────── */}
       <section className="section-py bg-white">
         <div className="container-page">
-          <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">
-            Vos enjeux
-          </p>
-          <h2 className="text-2xl font-bold text-steel-950 mb-8">
-            Ce que vous attendez de nous
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="mb-8"
+          >
+            <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">
+              Vos enjeux
+            </p>
+            <h2 className="text-2xl font-bold text-steel-950">
+              Ce que vous attendez de nous
+            </h2>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-5"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={stagger}
+          >
             {challenges.map((c) => (
-              <div
+              <motion.div
                 key={c.title}
+                variants={fadeUp}
                 className="flex gap-4 p-5 border border-border rounded-xl bg-surface-subtle"
               >
                 <CheckCircle2 className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
@@ -253,48 +342,80 @@ export function SectorPageTemplate({
                     {c.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* ── Benefits ────────────────────────────────────────────────────── */}
       <section className="section-py bg-steel-950 text-white">
         <div className="container-page">
-          <p className="text-sm font-semibold text-brand-400 uppercase tracking-wide mb-3">
-            Pourquoi ASO
-          </p>
-          <h2 className="text-2xl font-bold text-white mb-8">
-            Nos atouts pour votre secteur
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="mb-8"
+          >
+            <p className="text-sm font-semibold text-brand-400 uppercase tracking-wide mb-3">
+              Pourquoi ASO
+            </p>
+            <h2 className="text-2xl font-bold text-white">
+              Nos atouts pour votre secteur
+            </h2>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={stagger}
+          >
             {benefits.map((b) => (
-              <div
+              <motion.div
                 key={b.title}
+                variants={fadeUp}
                 className="bg-steel-900 border border-steel-800 rounded-xl p-5"
               >
                 <h3 className="font-semibold text-white mb-2 text-sm">{b.title}</h3>
                 <p className="text-sm text-steel-400 leading-relaxed">
                   {b.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* ── FAQ ─────────────────────────────────────────────────────────── */}
       <section className="section-py bg-white">
         <div className="container-narrow">
-          <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">
-            Questions fréquentes
-          </p>
-          <h2 className="text-2xl font-bold text-steel-950 mb-8">FAQ — {category}</h2>
-          <div className="space-y-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="mb-8"
+          >
+            <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">
+              Questions fréquentes
+            </p>
+            <h2 className="text-2xl font-bold text-steel-950">FAQ — {category}</h2>
+          </motion.div>
+
+          <motion.div
+            className="space-y-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={stagger}
+          >
             {faqs.map((faq) => (
-              <div
+              <motion.div
                 key={faq.question}
+                variants={fadeUp}
                 className="border border-border rounded-xl p-5"
               >
                 <h3 className="font-semibold text-steel-900 mb-2 text-sm">
@@ -303,9 +424,9 @@ export function SectorPageTemplate({
                 <p className="text-sm text-steel-500 leading-relaxed">
                   {faq.answer}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
