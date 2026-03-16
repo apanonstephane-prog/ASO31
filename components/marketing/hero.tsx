@@ -49,8 +49,8 @@ export function Hero() {
       {/* Background photo */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=85&auto=format&fit=crop"
-          alt="Technicien en intervention industrielle"
+          src="/images/company/batiment-facade.jpg"
+          alt="Bâtiment ASO — Cugnaux, Toulouse"
           fill
           priority
           quality={85}

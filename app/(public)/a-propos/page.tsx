@@ -62,11 +62,11 @@ export default function AProposPage() {
       <div className="relative bg-steel-950 text-white py-20 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=85&auto=format&fit=crop"
-            alt="Atelier technique industriel"
+            src="/images/company/batiment-facade.jpg"
+            alt="Siège ASO — Cugnaux, Toulouse"
             fill
             priority
-            quality={85}
+            quality={90}
             className="object-cover object-center"
             sizes="100vw"
           />
@@ -115,8 +115,8 @@ export default function AProposPage() {
             <div className="space-y-4">
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-elevated">
                 <Image
-                  src="https://images.unsplash.com/photo-1581092334651-ddf19d89e28f?w=900&q=85&auto=format&fit=crop"
-                  alt="Technicien ASO en intervention"
+                  src="/images/company/batiment-nuit.jpg"
+                  alt="Façade ASO — vue côté soir"
                   fill
                   quality={85}
                   className="object-cover"
@@ -126,8 +126,8 @@ export default function AProposPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="relative rounded-xl overflow-hidden aspect-square shadow-card">
                   <Image
-                    src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80&auto=format&fit=crop"
-                    alt="Intervention sur tableau électrique"
+                    src="/images/company/bureaux.jpg"
+                    alt="Open space ASO — Cugnaux"
                     fill
                     quality={80}
                     className="object-cover"
@@ -136,8 +136,8 @@ export default function AProposPage() {
                 </div>
                 <div className="relative rounded-xl overflow-hidden aspect-square shadow-card">
                   <Image
-                    src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop"
-                    alt="Portail automatique installé"
+                    src="/images/company/salle-detente.jpg"
+                    alt="Salle de détente ASO"
                     fill
                     quality={80}
                     className="object-cover"
@@ -217,6 +217,57 @@ export default function AProposPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Nos locaux */}
+      <section className="section-py bg-white border-t border-border">
+        <div className="container-page">
+          <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-2">Nos locaux</p>
+          <h2 className="text-2xl font-bold text-steel-950 mb-8">Un siège moderne à Cugnaux</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="relative rounded-2xl overflow-hidden aspect-[16/10] shadow-elevated lg:col-span-2">
+              <Image
+                src="/images/company/batiment-facade.jpg"
+                alt="Façade principale — ASO, Cugnaux"
+                fill
+                quality={90}
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 66vw"
+              />
+            </div>
+            <div className="relative rounded-2xl overflow-hidden aspect-[16/10] shadow-elevated">
+              <Image
+                src="/images/company/batiment-nuit.jpg"
+                alt="Façade ASO côté soir"
+                fill
+                quality={85}
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+            <div className="relative rounded-2xl overflow-hidden aspect-[16/10] shadow-elevated">
+              <Image
+                src="/images/company/bureaux.jpg"
+                alt="Bureaux open space ASO"
+                fill
+                quality={85}
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+            <div className="relative rounded-2xl overflow-hidden aspect-[16/10] shadow-elevated lg:col-span-2">
+              <Image
+                src="/images/company/salle-detente.jpg"
+                alt="Salle de détente ASO"
+                fill
+                quality={85}
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 66vw"
+              />
+            </div>
+          </div>
+          <p className="text-sm text-steel-500 mt-4">7 rue Alfred Sauvy — 31270 Cugnaux</p>
         </div>
       </section>
 
