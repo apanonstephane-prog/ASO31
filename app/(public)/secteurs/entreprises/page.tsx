@@ -120,6 +120,8 @@ export default function EntreprisesPage() {
       ctaSecondaryLabel="Contacter un commercial"
       devisHref="/devis"
       depannageHref="/depannage"
+      heroPhoto="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=85&auto=format&fit=crop"
+      heroPhotoAlt="Entrepôt logistique et site industriel sécurisé"
     />
   );
 }

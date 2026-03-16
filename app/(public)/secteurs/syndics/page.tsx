@@ -114,6 +114,8 @@ export default function SyndicsPage() {
       ctaSecondaryLabel="Contacter un référent syndic"
       devisHref="/devis"
       depannageHref="/depannage"
+      heroPhoto="https://images.unsplash.com/photo-1460317442991-0ec209397118?w=1600&q=85&auto=format&fit=crop"
+      heroPhotoAlt="Immeuble résidentiel en copropriété avec portail d'accès"
     />
   );
 }

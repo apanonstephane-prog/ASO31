@@ -120,6 +120,8 @@ export default function ParticuliersPage() {
       ctaSecondaryLabel="Appeler le SAV"
       devisHref="/devis"
       depannageHref="/depannage"
+      heroPhoto="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=85&auto=format&fit=crop"
+      heroPhotoAlt="Maison individuelle résidentielle avec portail motorisé"
     />
   );
 }
